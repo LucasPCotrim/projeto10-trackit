@@ -14,7 +14,6 @@ function App() {
           <Route path="/" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
-      Hello World
     </>
   );
 }

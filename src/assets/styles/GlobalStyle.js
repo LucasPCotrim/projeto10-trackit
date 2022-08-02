@@ -49,6 +49,8 @@ const Reset = css`
 const Global = css`
   body {
     box-sizing: border-box;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
   }
 `;
 
