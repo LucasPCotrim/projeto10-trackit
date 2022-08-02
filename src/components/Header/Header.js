@@ -1,7 +1,7 @@
 import {HeaderWrapper} from './Header.style'
 import profilePic from '../../assets/imgs/profile_pic.png';
 
-function Header() {
+export default function Header() {
   return (
     <HeaderWrapper>
       <h1>Track It</h1>
@@ -9,5 +9,3 @@ function Header() {
     </HeaderWrapper>
   )
 }
-
-export default Header

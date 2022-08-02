@@ -1,9 +1,7 @@
+import {TodayPageWrapper} from './TodayPage.style'
 
-
-function TodayPage() {
+export default function TodayPage() {
   return (
-    <div>TodayPage</div>
+    <TodayPageWrapper>TodayPage</TodayPageWrapper>
   )
 }
-
-export default TodayPage

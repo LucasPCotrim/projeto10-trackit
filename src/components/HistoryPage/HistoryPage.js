@@ -1,9 +1,7 @@
+import {HistoryPageWrapper} from './HistoryPage.style'
 
-
-function HistoryPage() {
+export default function HistoryPage() {
   return (
-    <div>HistoryPage</div>
+    <HistoryPageWrapper>HistoryPage</HistoryPageWrapper>
   )
 }
-
-export default HistoryPage

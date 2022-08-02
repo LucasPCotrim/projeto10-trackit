@@ -1,9 +1,7 @@
+import {HabitsPageWrapper} from './HabitsPage.style'
 
-
-function HabitsPage() {
+export default function HabitsPage() {
   return (
-    <div>HabitsPage</div>
+    <HabitsPageWrapper>HabitsPage</HabitsPageWrapper>
   )
 }
-
-export default HabitsPage
