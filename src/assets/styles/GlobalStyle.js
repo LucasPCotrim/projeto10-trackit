@@ -47,10 +47,17 @@ const Reset = css`
 `;
 
 const Global = css`
-  body {
+  * {
     box-sizing: border-box;
-    font-family: 'Lexend Deca', sans-serif;
-    font-weight: 400;
+    border: 0;
+    padding: 0;
+  }
+  body {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
 `;
 
