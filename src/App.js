@@ -1,12 +1,13 @@
 import GlobalStyle from './assets/styles/GlobalStyle';
-import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LoginPage from 'components/LoginPage/LoginPage';
 import SignUpPage from 'components/SignUpPage/SignUpPage';
+import HabitsPage from 'components/HabitsPage/HabitsPage';
+import TodayPage from 'components/TodayPage/TodayPage';
+import HistoryPage from 'components/HistoryPage/HistoryPage';
 
 
-
-function App() {
+export default function App() {
   return (
     <>
       <GlobalStyle />
@@ -14,10 +15,12 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/cadastro" element={<SignUpPage />} />
+          <Route path="/habitos" element={<HabitsPage />} />
+          <Route path="/hoje" element={<TodayPage />} />
+          <Route path="/historico" element={<HistoryPage />} />
         </Routes>
       </BrowserRouter>
     </>
   );
 }
 
-export default App;
