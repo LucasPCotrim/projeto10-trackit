@@ -54,10 +54,19 @@ const Global = css`
   }
   body {
     background-color: #FFFFFF;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    #root {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
   }
 `;
 
