@@ -58,12 +58,18 @@ export const Form = styled.form`
 		background-color: #52B6FF;
 		border: none;
 		border-radius: 4.64px;
-		font-family: 'Lexend Deca';
-		font-size: 20.976px;
-		line-height: 26px;
 		text-align: center;
-		color: #FFFFFF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		cursor: pointer;
+
+		h2 {
+			font-family: 'Lexend Deca';
+			font-size: 20.976px;
+			line-height: 26px;
+			color: #FFFFFF;
+		}
 	}
 `;
 
