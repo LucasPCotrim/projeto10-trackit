@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HabitsPageWrapper = styled.div`
-  background-color: #E5E5E5;
+  background-color: #F2F2F2;
   margin-top: 70px;
   width: 100vw;
   min-height: calc(100vh - 70px);

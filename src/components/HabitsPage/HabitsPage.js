@@ -7,7 +7,6 @@ import
   WeekdaysCheckboxes,
   ButtonsContainer,
   HabitCardWrapper} from './HabitsPage.style';
-
 import deleteIcon from '../../assets/imgs/delete_icon.svg';
 
 export default function HabitsPage() {
