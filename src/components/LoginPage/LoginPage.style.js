@@ -48,6 +48,11 @@ export const Form = styled.form`
 		&:focus::placeholder {
 			color: transparent;
 		}
+
+		&:disabled {
+			background-color: #F2F2F2;
+			color: #AFAFAF;
+		}
 	}
 
 	button {
