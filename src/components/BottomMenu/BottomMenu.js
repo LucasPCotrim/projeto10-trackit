@@ -2,28 +2,33 @@ import {BottomMenuWrapper, Button, ProgressBarContainer} from './BottomMenu.styl
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-function BottomMenu() {
+export default function BottomMenu() {
   return (
     <BottomMenuWrapper>
       <Button>Hábitos</Button>
-      <ProgressBarContainer>
-        <CircularProgressbar
-          value={69}
-          text={`Hoje`}
-          background={true}
-          backgroundPadding={6}
-          styles={buildStyles({
-            backgroundColor: '#52B6FF',
-            textColor: '#FFFFFF',
-            pathColor: '#FFFFFF',
-            trailColor: 'transparent'
-          })
-          }
-        />
-      </ProgressBarContainer>
+      <ProgressBar />
       <Button>Histórico</Button>
     </BottomMenuWrapper>
   )
 }
 
-export default BottomMenu
+
+function ProgressBar(){
+  return (
+    <ProgressBarContainer>
+      <CircularProgressbar
+        value={42}
+        text={`Hoje`}
+        background={true}
+        backgroundPadding={6}
+        styles={buildStyles({
+          backgroundColor: '#52B6FF',
+          textColor: '#FFFFFF',
+          pathColor: '#FFFFFF',
+          trailColor: 'transparent'
+        })
+        }
+      />
+    </ProgressBarContainer>
+  );
+}
