@@ -62,6 +62,9 @@ export const Form = styled.form`
 		font-size: 20.976px;
 		line-height: 26px;
 		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		color: #FFFFFF;
 		cursor: pointer;
 	}
