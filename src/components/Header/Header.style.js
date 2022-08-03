@@ -12,6 +12,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 3;
 
   h1 {
     font-family: 'Playball';

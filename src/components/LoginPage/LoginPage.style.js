@@ -37,7 +37,7 @@ export const Form = styled.form`
 		font-size: 19.976px;
 		line-height: 25px;
 		padding-left: 11px;
-		color: #5e5d5d;
+		color: #666666;
 		outline: none;
 
 		&::placeholder {
@@ -48,7 +48,6 @@ export const Form = styled.form`
 		&:focus::placeholder {
 			color: transparent;
 		}
-
 		&:disabled {
 			background-color: #F2F2F2;
 			color: #AFAFAF;
