@@ -1,13 +1,14 @@
 import {BottomMenuWrapper, Button, ProgressBarContainer} from './BottomMenu.style'
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import {Link} from 'react-router-dom'
 
 export default function BottomMenu() {
   return (
     <BottomMenuWrapper>
-      <Button>Hábitos</Button>
-      <ProgressBar />
-      <Button>Histórico</Button>
+      <Link to='/habitos' ><Button>Hábitos</Button></Link>
+      <Link to='/hoje' ><ProgressBar/></Link>
+      <Link to='/historico' ><Button>Histórico</Button></Link>
     </BottomMenuWrapper>
   )
 }
