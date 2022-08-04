@@ -1,11 +1,14 @@
 import {LoginPageWrapper, Form, SignUpLink} from './LoginPage.style'
 import {useState} from "react";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import trackItLogo from '../../assets/imgs/trackitLogo.svg';
 import {ThreeDots} from "react-loader-spinner";
+import {logIn} from '../../trackItService'
 
 
 export default function LoginPage() {
+
+  const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,13 +26,30 @@ export default function LoginPage() {
 
   function executeLogin(event){
     event.preventDefault();
-
     setIsLoading(true);
-
-    // setForm({
-    //   email: '',
-    //   password: ''
-    // })
+		console.log(form);
+    const promise = logIn(form);
+    promise
+      .then((res)=>{
+        console.log('THEN');
+        setIsLoading(false);
+        console.log(res);
+        setForm({
+          email: '',
+          password: ''
+        });
+        navigate('/hoje');
+      })
+      .catch((res)=>{
+        console.log('CATCH');
+        setIsLoading(false);
+        alert(res.response.data.message);
+        console.log(res);
+        setForm({
+          email: '',
+          password: ''
+        });
+      });
 	}
 
 
