@@ -6,6 +6,9 @@ import 'dayjs/locale/pt-br';
 
 export default function TodayPage() {
 
+  const tokenObj = JSON.parse(localStorage.getItem('trackIt-token'));
+  console.log(tokenObj);
+
   let weekday = dayjs().locale('pt-br').format('dddd').replaceAll('-feira', '');
   weekday = weekday.replace(/^./, weekday[0].toUpperCase());
   const date = dayjs().format('DD/MM')

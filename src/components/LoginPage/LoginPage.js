@@ -44,7 +44,10 @@ export default function LoginPage() {
         setIsLoading(false);
         console.log(res);
         clearForm();
-        localStorage.setItem("trackIt-token", res.data.token);
+        localStorage.setItem("trackIt-token", JSON.stringify({
+          token: res.data.token,
+          loginTime: +new Date()
+        }));
         setUser({...user,
           name: res.data.name,
           email: res.data.email,
