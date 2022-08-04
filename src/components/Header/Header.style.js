@@ -22,4 +22,12 @@ export const HeaderWrapper = styled.div`
     line-height: 49px;
     color: #FFFFFF;
   }
+  img {
+    width: 51px;
+    height: 51px;
+    border: 1px solid #000000;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 98.5px;
+    object-fit: cover;
+  }
 `;

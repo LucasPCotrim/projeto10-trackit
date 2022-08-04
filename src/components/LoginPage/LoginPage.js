@@ -1,5 +1,6 @@
 import {LoginPageWrapper, Form, SignUpLink} from './LoginPage.style'
-import {useState} from "react";
+import {useState, useContext} from "react";
+import UserContext from "../../contexts/UserContext";
 import {Link, useNavigate} from 'react-router-dom'
 import trackItLogo from '../../assets/imgs/trackitLogo.svg';
 import {ThreeDots} from "react-loader-spinner";
@@ -7,6 +8,8 @@ import {logIn} from '../../trackItService'
 
 
 export default function LoginPage() {
+
+  const {user, setUser} = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -17,11 +20,17 @@ export default function LoginPage() {
     password: '',
   });
 
-  function handleForm(event) {
+  const handleForm = (event) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
     }) 
+  }
+  const clearForm = () => {
+    setForm({
+      email: '',
+      password: ''
+    });
   }
 
   function executeLogin(event){
@@ -34,11 +43,14 @@ export default function LoginPage() {
         console.log('THEN');
         setIsLoading(false);
         console.log(res);
-        setForm({
-          email: '',
-          password: ''
+        clearForm();
+        localStorage.setItem("trackIt-token", res.data.token);
+        setUser({...user,
+          name: res.data.name,
+          email: res.data.email,
+          password: res.data.password,
+          image: res.data.image
         });
-        localStorage.setItem("trackIt-token", JSON.stringify(res.data.token));
         navigate('/hoje');
       })
       .catch((res)=>{
@@ -46,10 +58,7 @@ export default function LoginPage() {
         setIsLoading(false);
         alert(res.response.data.message);
         console.log(res);
-        setForm({
-          email: '',
-          password: ''
-        });
+        clearForm();
       });
 	}
 
@@ -90,6 +99,6 @@ function FormContent({isLoading, form, handleForm}){
       </>
     );
   }
-  
 }
+
 
