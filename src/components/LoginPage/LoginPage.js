@@ -38,6 +38,7 @@ export default function LoginPage() {
           email: '',
           password: ''
         });
+        localStorage.setItem("trackIt-token", JSON.stringify(res.data.token));
         navigate('/hoje');
       })
       .catch((res)=>{
