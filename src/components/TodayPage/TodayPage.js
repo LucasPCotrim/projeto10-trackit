@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {TodayPageWrapper, PageContent, HabitContainer, HabitWrapper, HabitInfo, HabitStatus} from './TodayPage.style'
+import {TodayPageWrapper, PageContent, HabitContainer, HabitWrapper, HabitInfo, HabitStatus} from './TodayPage.style';
 import completedIcon from '../../assets/imgs/completed_icon.svg';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';

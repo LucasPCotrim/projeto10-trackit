@@ -1,7 +1,7 @@
 import GlobalStyle from './assets/styles/GlobalStyle';
-import {useState} from 'react'
+import {useState} from 'react';
 import UserContext from "./contexts/UserContext";
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LoginPage from 'components/LoginPage/LoginPage';
 import SignUpPage from 'components/SignUpPage/SignUpPage';
 import HabitsPage from 'components/HabitsPage/HabitsPage';

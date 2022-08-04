@@ -1,10 +1,10 @@
-import {LoginPageWrapper, Form, SignUpLink} from './LoginPage.style'
+import {LoginPageWrapper, Form, SignUpLink} from './LoginPage.style';
 import {useState, useContext} from "react";
 import UserContext from "../../contexts/UserContext";
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom';
 import trackItLogo from '../../assets/imgs/trackitLogo.svg';
 import {ThreeDots} from "react-loader-spinner";
-import {logIn} from '../../trackItService'
+import {logIn} from '../../trackItService';
 
 
 export default function LoginPage() {

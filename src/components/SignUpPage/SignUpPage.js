@@ -1,8 +1,8 @@
-import {SignUpPageWrapper, Form, LoginLink} from './SignUpPage.style'
+import {SignUpPageWrapper, Form, LoginLink} from './SignUpPage.style';
 import {useState} from "react";
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom';
 import trackItLogo from '../../assets/imgs/trackitLogo.svg';
-import {signUp} from '../../trackItService'
+import {signUp} from '../../trackItService';
 import {ThreeDots} from "react-loader-spinner";
 
 export default function SignUpPage() {

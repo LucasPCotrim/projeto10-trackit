@@ -1,7 +1,7 @@
-import {BottomMenuWrapper, Button, ProgressBarContainer} from './BottomMenu.style'
+import {BottomMenuWrapper, Button, ProgressBarContainer} from './BottomMenu.style';
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 export default function BottomMenu() {
   return (

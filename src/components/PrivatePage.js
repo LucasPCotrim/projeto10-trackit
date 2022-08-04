@@ -1,7 +1,7 @@
 import Header from 'components/Header/Header';
 import BottomMenu from 'components/BottomMenu/BottomMenu';
-import {Navigate} from 'react-router-dom'
-import {useContext} from 'react'
+import {Navigate} from 'react-router-dom';
+import {useContext} from 'react';
 import UserContext from "../contexts/UserContext";
 
 // Session timeout = 5min

@@ -8,8 +8,13 @@ import
   ButtonsContainer,
   HabitCardWrapper} from './HabitsPage.style';
 import deleteIcon from '../../assets/imgs/delete_icon.svg';
+import {useState} from 'react';
+import {loadHabits} from '../../trackItService';
 
 export default function HabitsPage() {
+
+  console.log(loadHabits());
+
   return (
     <HabitsPageWrapper>
       <PageContent>

@@ -1,5 +1,5 @@
-import {HeaderWrapper} from './Header.style'
-import {useContext} from 'react'
+import {HeaderWrapper} from './Header.style';
+import {useContext} from 'react';
 import UserContext from "../../contexts/UserContext";
 
 export default function Header() {
