@@ -16,9 +16,14 @@ function logIn(body) {
 function loadHabits() {
   const habitAPI = `${BASE_URL}/habits`;
   const token = JSON.parse(localStorage.getItem('trackIt-token')).token;
-  console.log(`Bearer ${token}`);
   return axios.get(habitAPI, {headers: {Authorization: `Bearer ${token}`}});
 }
 
+function createHabit(body) {
+  const habitAPI = `${BASE_URL}/habits`;
+  const token = JSON.parse(localStorage.getItem('trackIt-token')).token;
+  return axios.post(habitAPI, body, {headers: {Authorization: `Bearer ${token}`}});
+}
 
-export {signUp, logIn, loadHabits};
+
+export {signUp, logIn, loadHabits, createHabit};

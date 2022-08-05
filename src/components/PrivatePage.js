@@ -18,7 +18,7 @@ export default function PrivatePage({children}) {
     return(<Navigate to='/' replace={true} />);
 
   } else if (timestampNow - tokenObj.loginTime >= TOKEN_TIMEOUT){
-    alert('Sessão encerrada. Faça login novamente');
+    alert('Sessão expirada. Faça login novamente');
     return(<Navigate to='/' replace={true} />);
     
   } else if(Object.keys(user).length === 0){

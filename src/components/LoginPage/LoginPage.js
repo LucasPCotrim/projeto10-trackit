@@ -20,13 +20,13 @@ export default function LoginPage() {
     password: '',
   });
 
-  const handleForm = (event) => {
+  const handleForm = (event)=>{
     setForm({
       ...form,
       [event.target.name]: event.target.value,
     }) 
   }
-  const clearForm = () => {
+  const clearForm = ()=>{
     setForm({
       email: '',
       password: ''
