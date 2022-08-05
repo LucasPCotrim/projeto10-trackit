@@ -37,7 +37,6 @@ export default function HabitsPage() {
   }, [reloadHabits]);
 
   const handleCreateHabit = ()=>{
-    setIsLoading(true);
     if (newHabitInfo.name.length === 0){
       alert('Insira o nome do hábito!');
       return;
@@ -45,6 +44,7 @@ export default function HabitsPage() {
       alert('Favor selecionar pelo menos um dia!');
       return;
     }
+    setIsLoading(true);
     const promise = createHabit(newHabitInfo);
     promise.then((res)=>{
       console.log('THEN');
@@ -77,6 +77,7 @@ export default function HabitsPage() {
     .catch((res)=>{
       console.log('CATCH');
       console.log(res);
+      alert(res.response.data.message);
     });
   }
   
