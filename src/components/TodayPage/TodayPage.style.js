@@ -80,6 +80,12 @@ export const HabitInfo = styled.div`
     line-height: 16px;
     color: #666666;
   }
+  h4:nth-child(1) {
+    color: ${props => props.greenCurrent ? '#8FC549' : '#666666'};
+  }
+  h4:nth-child(2) {
+    color: ${props => props.greenHighest ? '#8FC549' : '#666666'};
+  }
 `;
 
 export const HabitStatus = styled.div`

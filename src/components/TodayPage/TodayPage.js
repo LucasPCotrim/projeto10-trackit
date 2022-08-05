@@ -10,6 +10,7 @@ import {useContext} from 'react';
 import UserContext from "../../contexts/UserContext";
 
 export default function TodayPage() {
+  console.log('TODAY_PAGE loaded!')
 
   const {weekday, date} = getWeekDayAndDate();
 
@@ -80,6 +81,8 @@ export default function TodayPage() {
             return (
               <Habit
                 habitName={habit.name}
+                currentSequence={habit.currentSequence}
+                highestSequence={habit.highestSequence}
                 completed={habit.done}
                 handleMarkHabit={()=>handleMarkHabit(habit.id, habit.done)}
                 key={habit.id}
@@ -93,13 +96,14 @@ export default function TodayPage() {
 }
 
 
-function Habit({habitName, completed, handleMarkHabit}){
+function Habit({habitName, currentSequence, highestSequence, completed, handleMarkHabit}){
+
   return (
     <HabitWrapper>
-      <HabitInfo>
+      <HabitInfo greenCurrent={completed} greenHighest={(currentSequence>=highestSequence)}>
         <h3>{habitName}</h3>
-        <h4>Sequência atual: 3 dias</h4>
-        <h4>Seu recorde: 5 dias</h4>
+        <h4>{`Sequência atual: ${currentSequence} dias`}</h4>
+        <h4>{`Seu recorde: ${highestSequence} dias`}</h4>
       </HabitInfo>
       <HabitStatus completed={completed} onClick={handleMarkHabit}>
         <img src={completedIcon} alt="Completed icon" />
@@ -125,6 +129,14 @@ function getHabitPercentage(todayHabits) {
 
 function toggleHabitStatus(todayHabits, setTodayHabits, habitId) {
   setTodayHabits(todayHabits.map((habit)=>{
-    return ((habit.id === habitId) ? {...habit, done:!habit.done} : {...habit})
+    if (habit.id !== habitId){
+      return {...habit};
+    } else{
+      if (!habit.done){
+        return {...habit, done:!habit.done, currentSequence:habit.currentSequence+1};
+      } else{
+        return {...habit, done:!habit.done, currentSequence:habit.currentSequence-1};
+      }
+    }
   }));
 }
