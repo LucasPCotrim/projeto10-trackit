@@ -12,7 +12,7 @@ import PrivatePage from 'components/PrivatePage';
 
 
 export default function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({name: '', email: '', passord: '', image: '', dayProgress: 0});
   return (
     <>
       <GlobalStyle />

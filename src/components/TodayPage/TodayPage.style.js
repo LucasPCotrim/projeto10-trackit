@@ -38,7 +38,7 @@ export const PageContent = styled.div`
     font-weight: 400;
     font-size: 17.976px;
     line-height: 22px;
-    color: #BABABA;
+    color: ${props => (props.percentCompleted > 0) ? '#8FC549' : '#BABABA'};
   }
 `;
 
@@ -91,4 +91,5 @@ export const HabitStatus = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;

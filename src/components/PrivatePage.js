@@ -21,7 +21,7 @@ export default function PrivatePage({children}) {
     alert('Sessão expirada. Faça login novamente');
     return(<Navigate to='/' replace={true} />);
     
-  } else if(Object.keys(user).length === 0){
+  } else if(user?.image?.length===0){
     return(<Navigate to='/' replace={true} />);
 
   } else{
