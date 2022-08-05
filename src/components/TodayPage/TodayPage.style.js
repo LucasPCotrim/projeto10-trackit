@@ -52,6 +52,7 @@ export const HabitContainer = styled.div`
 `;
 
 export const HabitWrapper = styled.div`
+  overflow-x: scroll;
   background-color: #FFFFFF;
   width: 100%;
   height: 94px;
@@ -64,6 +65,8 @@ export const HabitWrapper = styled.div`
 
 export const HabitInfo = styled.div`
   h3 {
+    width: 94%;
+    overflow-x: hidden;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;

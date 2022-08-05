@@ -11,9 +11,7 @@ export const BottomMenuWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: min(161px, calc(0.33 * 100vw));
-
-  
+  gap: min(131px, calc(0.24 * 100vw));  
 `;
 
 export const Button = styled.button`

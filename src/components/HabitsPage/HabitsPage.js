@@ -36,6 +36,9 @@ export default function HabitsPage() {
     if (newHabitInfo.name.length === 0){
       alert('Insira o nome do hábito!');
       return;
+    } else if(newHabitInfo.name.length > 30){
+      alert('Nome de hábito inválido!');
+      return;
     } else if (newHabitInfo.days.length === 0){
       alert('Favor selecionar pelo menos um dia!');
       return;
@@ -90,7 +93,6 @@ export default function HabitsPage() {
           {habits.map((habit)=>{
             return (
               <HabitCard
-                id={habit.id}
                 name={habit.name}
                 days={habit.days}
                 handleDeleteHabit={()=>handleDeleteHabit(habit.id)}
@@ -163,7 +165,7 @@ function HabitCreationCard({newHabitInfo, setNewHabitInfo, handleCreateHabit, ha
 }
 
 
-function HabitCard({id, name, days, handleDeleteHabit}){
+function HabitCard({name, days, handleDeleteHabit}){
   return (
     <HabitCardWrapper>
       <h2>{name}</h2>

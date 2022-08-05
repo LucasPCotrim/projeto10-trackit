@@ -207,8 +207,11 @@ export const HabitCardWrapper = styled.div`
   background-color: #FFFFFF;
   border-radius: 5px;
   padding: 13px;
+  overflow-x: hidden;
 
   h2 {
+    width: 94%;
+    overflow-x: scroll;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
