@@ -10,12 +10,14 @@ import
 import deleteIcon from '../../assets/imgs/delete_icon.svg';
 import {useEffect, useState} from 'react';
 import {loadHabits, createHabit} from '../../trackItService';
+import {ThreeDots} from "react-loader-spinner";
 
 const WEEKDAYS = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
 export default function HabitsPage() {
-
+  
   const [habits, setHabits] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [showHabitCreation, setShowHabitCreation] = useState(false);
   const [newHabitInfo, setNewHabitInfo] = useState({name: '', days: []});
 
@@ -34,6 +36,7 @@ export default function HabitsPage() {
   }, []);
 
   const handleCreateHabit = ()=>{
+    setIsLoading(true);
     if (newHabitInfo.name.length === 0){
       alert('Insira o nome do hábito!');
       return;
@@ -45,14 +48,16 @@ export default function HabitsPage() {
     promise.then((res)=>{
       console.log('THEN');
       console.log(res);
+      setIsLoading(false);
       setHabits([...habits, res.data]);
       setNewHabitInfo({name: '', days: []});
+      setShowHabitCreation(false);
     })
     .catch((res)=>{
       console.log('CATCH');
       console.log(res);
+      setIsLoading(false);
       alert(res.response.data.message);
-      setNewHabitInfo({name: '', days: []});
     });
   }
   
@@ -70,6 +75,8 @@ export default function HabitsPage() {
                 newHabitInfo={newHabitInfo}
                 setNewHabitInfo={setNewHabitInfo}
                 handleCreateHabit={handleCreateHabit}
+                handleCancelHabit={()=>setShowHabitCreation(false)}
+                isLoading={isLoading}
               />
             : <></>
           }
@@ -78,9 +85,6 @@ export default function HabitsPage() {
               <HabitCard name={habit.name} days={habit.days} key={habit.id}/>
             );
           })}
-          {/* <HabitCard name={'Ler 1 capítulo do livro'} days={[1,3,5]}/>
-          <HabitCard name={'Ler 2 capítulos do livro'} days={[0,1]}/>
-          <HabitCard name={'Ler 3 capítulos do livro'} days={[3,4,5,6]}/> */}
         </HabitsContainer>
         {(habits.length===0)
           ? <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
@@ -93,7 +97,7 @@ export default function HabitsPage() {
 
 
 
-function HabitCreationCard({newHabitInfo, setNewHabitInfo, handleCreateHabit}) {
+function HabitCreationCard({newHabitInfo, setNewHabitInfo, handleCreateHabit, handleCancelHabit, isLoading}) {
 
   const handleCheckboxChange = (event, dayIndex)=>{
     let checked = event.target.checked;
@@ -114,22 +118,32 @@ function HabitCreationCard({newHabitInfo, setNewHabitInfo, handleCreateHabit}) {
         placeholder='nome do hábito'
         value={newHabitInfo.name}
         onChange={(event) => setNewHabitInfo({...newHabitInfo, name: event.target.value})}
+        disabled={isLoading}
       />
+      
       <WeekdaysCheckboxes>
         {[0,1,2,3,4,5,6].map((dayIndex)=>{
           return (
             <label key={dayIndex}>
               <input
                 type="checkbox"
-                onChange={(event) => handleCheckboxChange(event, dayIndex)}/>
+                onChange={(event) => handleCheckboxChange(event, dayIndex)}
+                disabled={isLoading}
+                checked={newHabitInfo.days.includes(dayIndex)}
+              />
               <span>{WEEKDAYS[dayIndex]}</span>
             </label>
           );
         })}
       </WeekdaysCheckboxes>
       <ButtonsContainer>
-        <button>Cancelar</button>
-        <button onClick={handleCreateHabit}>Salvar</button>
+        <button onClick={handleCancelHabit}>Cancelar</button>
+        <button
+          disabled={isLoading}
+          onClick={handleCreateHabit}
+        >
+          {isLoading ? <ThreeDots color={'#fafafa'} height={13} width={51}/> : 'Salvar'}
+        </button>
       </ButtonsContainer>
     </HabitCreationCardWrapper>
   );
