@@ -9,7 +9,7 @@ import
   HabitCardWrapper} from './HabitsPage.style';
 import deleteIcon from '../../assets/imgs/delete_icon.svg';
 import {useEffect, useState} from 'react';
-import {loadHabits, createHabit} from '../../trackItService';
+import {loadHabits, createHabit, deleteHabit} from '../../trackItService';
 import {ThreeDots} from "react-loader-spinner";
 
 const WEEKDAYS = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
@@ -20,6 +20,7 @@ export default function HabitsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showHabitCreation, setShowHabitCreation] = useState(false);
   const [newHabitInfo, setNewHabitInfo] = useState({name: '', days: []});
+  const [reloadHabits, setReloadHabits] = useState(false);
 
   useEffect(() => {
     const promise = loadHabits();
@@ -33,7 +34,7 @@ export default function HabitsPage() {
       console.log(res);
       alert(res.response.data.message);
     });
-  }, []);
+  }, [reloadHabits]);
 
   const handleCreateHabit = ()=>{
     setIsLoading(true);
@@ -60,6 +61,24 @@ export default function HabitsPage() {
       alert(res.response.data.message);
     });
   }
+
+  const handleDeleteHabit = (habitId)=>{
+    console.log('--------handleDeleteHabit--------')
+    let userConfirmation = window.confirm('Deletar este hábito?');
+    if (!userConfirmation){
+      return;
+    }
+    const promise = deleteHabit(habitId);
+    promise.then((res)=>{
+      console.log('THEN');
+      console.log(res);
+      setReloadHabits(!reloadHabits);
+    })
+    .catch((res)=>{
+      console.log('CATCH');
+      console.log(res);
+    });
+  }
   
 
   return (
@@ -82,7 +101,13 @@ export default function HabitsPage() {
           }
           {habits.map((habit)=>{
             return (
-              <HabitCard name={habit.name} days={habit.days} key={habit.id}/>
+              <HabitCard
+                id={habit.id}
+                name={habit.name}
+                days={habit.days}
+                handleDeleteHabit={()=>handleDeleteHabit(habit.id)}
+                key={habit.id}
+                />
             );
           })}
         </HabitsContainer>
@@ -150,11 +175,11 @@ function HabitCreationCard({newHabitInfo, setNewHabitInfo, handleCreateHabit, ha
 }
 
 
-function HabitCard({name, days}){
+function HabitCard({id, name, days, handleDeleteHabit}){
   return (
     <HabitCardWrapper>
       <h2>{name}</h2>
-      <img src={deleteIcon} alt={"Delete icon"} />
+      <img src={deleteIcon} alt={"Delete icon"} onClick={handleDeleteHabit}/>
       <WeekdaysCheckboxes>
         {[0,1,2,3,4,5,6].map((dayIndex)=>{
           return (

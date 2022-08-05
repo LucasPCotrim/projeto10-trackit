@@ -25,5 +25,11 @@ function createHabit(body) {
   return axios.post(habitAPI, body, {headers: {Authorization: `Bearer ${token}`}});
 }
 
+function deleteHabit(habitId) {
+  const deleteHabitAPI = `${BASE_URL}/habits/${habitId}`;
+  const token = JSON.parse(localStorage.getItem('trackIt-token')).token;
+  return axios.delete(deleteHabitAPI, {headers: {Authorization: `Bearer ${token}`}})
+}
 
-export {signUp, logIn, loadHabits, createHabit};
+
+export {signUp, logIn, loadHabits, createHabit, deleteHabit};
