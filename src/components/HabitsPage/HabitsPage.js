@@ -9,12 +9,18 @@ import
   HabitCardWrapper} from './HabitsPage.style';
 import deleteIcon from '../../assets/imgs/delete_icon.svg';
 import {useEffect, useState} from 'react';
-import {loadHabits, createHabit, deleteHabit} from '../../trackItService';
+import {loadHabits, createHabit, deleteHabit, getTodayHabits} from '../../trackItService';
 import {ThreeDots} from "react-loader-spinner";
+import {useContext} from 'react';
+import UserContext from "../../contexts/UserContext";
+import {getHabitPercentage} from '../../helperFunctions'
+
 
 const WEEKDAYS = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
 export default function HabitsPage() {
+
+  const {user, setUser} = useContext(UserContext);
   
   const [habits, setHabits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -50,6 +56,7 @@ export default function HabitsPage() {
       setHabits([...habits, res.data]);
       setNewHabitInfo({name: '', days: []});
       setShowHabitCreation(false);
+      updateProgressBar();
     })
     .catch((res)=>{
       setIsLoading(false);
@@ -64,11 +71,23 @@ export default function HabitsPage() {
     }
     const promise = deleteHabit(habitId);
     promise.then((res)=>{
+      updateProgressBar();
       setReloadHabits(!reloadHabits);
     })
     .catch((res)=>{
       alert(res.response.data.message);
     });
+  }
+
+  const updateProgressBar = ()=>{
+    const promise = getTodayHabits();
+    promise
+      .then((res)=>{
+        setUser({...user, dayProgress: getHabitPercentage([...res.data])});
+      })
+      .catch((res)=>{
+        alert(res.response.data.message);
+      });
   }
   
 
@@ -183,3 +202,4 @@ function HabitCard({name, days, handleDeleteHabit}){
     </HabitCardWrapper>
   );
 }
+

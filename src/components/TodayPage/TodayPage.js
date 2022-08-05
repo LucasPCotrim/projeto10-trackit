@@ -3,8 +3,7 @@
 import {TodayPageWrapper, PageContent, HabitContainer, HabitWrapper, HabitInfo, HabitStatus} from './TodayPage.style';
 import {useEffect, useState} from 'react';
 import completedIcon from '../../assets/imgs/completed_icon.svg';
-import dayjs from 'dayjs';
-import 'dayjs/locale/pt-br';
+import {getWeekDayAndDate, getHabitPercentage} from '../../helperFunctions'
 import {getTodayHabits, markTodayHabit, unMarkTodayHabit} from '../../trackItService';
 import {useContext} from 'react';
 import UserContext from "../../contexts/UserContext";
@@ -102,15 +101,3 @@ function Habit({habitName, currentSequence, highestSequence, completed, handleMa
 
 
 
-function getWeekDayAndDate() {
-  let weekday = dayjs().locale('pt-br').format('dddd').replaceAll('-feira', '');
-  weekday = weekday.replace(/^./, weekday[0].toUpperCase());
-  const date = dayjs().format('DD/MM');
-  return {weekday, date};
-}
-
-function getHabitPercentage(todayHabits) {
-  const numberHabits = todayHabits.length;
-  const numberHabitsDone = todayHabits.filter((habit)=>habit.done).length;
-  return (numberHabits) ? 100*(numberHabitsDone/numberHabits).toFixed(2) : 0;
-}
