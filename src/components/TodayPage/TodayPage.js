@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
 import {TodayPageWrapper, PageContent, HabitContainer, HabitWrapper, HabitInfo, HabitStatus} from './TodayPage.style';
-import {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react';
 import completedIcon from '../../assets/imgs/completed_icon.svg';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
-import {getTodayHabits} from '../../trackItService';
+import {getTodayHabits, markTodayHabit, unMarkTodayHabit} from '../../trackItService';
 import {useContext} from 'react';
 import UserContext from "../../contexts/UserContext";
 
@@ -23,8 +24,8 @@ export default function TodayPage() {
         console.log('THEN');
         console.log(res);
         setTodayHabits([...res.data]);
-        console.log('% habits done = ', getHabitPercentage(todayHabits))
-        setUser({...user, dayProgress: getHabitPercentage(todayHabits)})
+        console.log('% habits done = ', getHabitPercentage(todayHabits));
+        setUser({...user, dayProgress: getHabitPercentage(todayHabits)});
       })
       .catch((res)=>{
         console.log('CATCH');
@@ -33,15 +34,44 @@ export default function TodayPage() {
   }, []);
 
 
-  const handleMarkHabit = (habitId)=>{
-    const newTodayHabits = todayHabits.map((habit)=>{
-      if (habit.id === habitId){
-        return {...habit, done:!habit.done};
-      } else{
-        return {...habit};
-      }
-    });
-    setTodayHabits(newTodayHabits);
+  const handleMarkHabit = (habitId, isDone)=>{
+
+    // Mark Habit
+    if (!isDone) {
+      const promise = markTodayHabit(habitId);
+      promise
+        .then((res)=>{
+          console.log('THEN');
+          console.log(res);
+          setTodayHabits(todayHabits.map((habit)=>{
+            return ((habit.id === habitId) ? {...habit, done:!habit.done} : {...habit})
+          }));
+        })
+        .catch((res)=>{
+          console.log('CATCH');
+          console.log(res);
+          alert(res.response.data.message);
+        });
+    }
+    // Unmark Habit
+    else{
+      const promise = unMarkTodayHabit(habitId);
+      promise
+        .then((res)=>{
+          console.log('THEN');
+          console.log(res);
+          setTodayHabits(todayHabits.map((habit)=>{
+            return ((habit.id === habitId) ? {...habit, done:!habit.done} : {...habit})
+          }));
+        })
+        .catch((res)=>{
+          console.log('CATCH');
+          console.log(res);
+          alert(res.response.data.message);
+        });
+    }
+
+    
   }
 
   const dayPercentage = getHabitPercentage(todayHabits);
@@ -57,7 +87,7 @@ export default function TodayPage() {
               <Habit
                 habitName={habit.name}
                 completed={habit.done}
-                handleMarkHabit={()=>handleMarkHabit(habit.id)}
+                handleMarkHabit={()=>handleMarkHabit(habit.id, habit.done)}
                 key={habit.id}
               />
             );
@@ -96,5 +126,5 @@ function getWeekDayAndDate() {
 function getHabitPercentage(todayHabits) {
   const numberHabits = todayHabits.length;
   const numberHabitsDone = todayHabits.filter((habit)=>habit.done).length;
-  return (numberHabits) ? 100*(numberHabitsDone/numberHabits) : 0;
+  return (numberHabits) ? 100*(numberHabitsDone/numberHabits).toFixed(2) : 0;
 }
