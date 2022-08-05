@@ -28,13 +28,10 @@ export default function SignUpPage() {
   function executeSignUp(event){
     event.preventDefault();
     setIsLoading(true);
-		console.log(form);
     const promise = signUp(form);
     promise
       .then((res)=>{
-        console.log('THEN');
         setIsLoading(false);
-        console.log(res);
         setForm({
           email: '',
           name: '',
@@ -44,10 +41,8 @@ export default function SignUpPage() {
         navigate('/');
       })
       .catch((res)=>{
-        console.log('CATCH');
         setIsLoading(false);
         alert(res.response.data.message);
-        console.log(res);
         setForm({
           email: '',
           name: '',

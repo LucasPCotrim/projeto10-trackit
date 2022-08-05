@@ -25,13 +25,9 @@ export default function HabitsPage() {
   useEffect(() => {
     const promise = loadHabits();
     promise.then((res)=>{
-      console.log('THEN');
-      console.log(res);
       setHabits([...res.data]);
     })
     .catch((res)=>{
-      console.log('CATCH');
-      console.log(res);
       alert(res.response.data.message);
     });
   }, [reloadHabits]);
@@ -47,16 +43,12 @@ export default function HabitsPage() {
     setIsLoading(true);
     const promise = createHabit(newHabitInfo);
     promise.then((res)=>{
-      console.log('THEN');
-      console.log(res);
       setIsLoading(false);
       setHabits([...habits, res.data]);
       setNewHabitInfo({name: '', days: []});
       setShowHabitCreation(false);
     })
     .catch((res)=>{
-      console.log('CATCH');
-      console.log(res);
       setIsLoading(false);
       alert(res.response.data.message);
     });
@@ -69,13 +61,9 @@ export default function HabitsPage() {
     }
     const promise = deleteHabit(habitId);
     promise.then((res)=>{
-      console.log('THEN');
-      console.log(res);
       setReloadHabits(!reloadHabits);
     })
     .catch((res)=>{
-      console.log('CATCH');
-      console.log(res);
       alert(res.response.data.message);
     });
   }

@@ -72,18 +72,17 @@ export const HabitInfo = styled.div`
     color: #666666;
     margin-bottom: 7px;
   }
-  h4 {
+  h4, h5 {
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 12.976px;
     line-height: 16px;
-    color: #666666;
   }
-  h4:nth-child(1) {
+  h4 {
     color: ${props => props.greenCurrent ? '#8FC549' : '#666666'};
   }
-  h4:nth-child(2) {
+  h5 {
     color: ${props => props.greenHighest ? '#8FC549' : '#666666'};
   }
 `;

@@ -36,13 +36,10 @@ export default function LoginPage() {
   function executeLogin(event){
     event.preventDefault();
     setIsLoading(true);
-		console.log(form);
     const promise = logIn(form);
     promise
       .then((res)=>{
-        console.log('THEN');
         setIsLoading(false);
-        console.log(res);
         clearForm();
         localStorage.setItem("trackIt-token", JSON.stringify({
           token: res.data.token,
@@ -57,10 +54,8 @@ export default function LoginPage() {
         navigate('/hoje');
       })
       .catch((res)=>{
-        console.log('CATCH');
         setIsLoading(false);
         alert(res.response.data.message);
-        console.log(res);
         clearForm();
       });
 	}
