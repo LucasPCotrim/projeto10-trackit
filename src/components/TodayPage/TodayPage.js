@@ -43,9 +43,7 @@ export default function TodayPage() {
         .then((res)=>{
           console.log('THEN');
           console.log(res);
-          setTodayHabits(todayHabits.map((habit)=>{
-            return ((habit.id === habitId) ? {...habit, done:!habit.done} : {...habit})
-          }));
+          toggleHabitStatus(todayHabits, setTodayHabits, habitId);
         })
         .catch((res)=>{
           console.log('CATCH');
@@ -60,9 +58,7 @@ export default function TodayPage() {
         .then((res)=>{
           console.log('THEN');
           console.log(res);
-          setTodayHabits(todayHabits.map((habit)=>{
-            return ((habit.id === habitId) ? {...habit, done:!habit.done} : {...habit})
-          }));
+          toggleHabitStatus(todayHabits, setTodayHabits, habitId);
         })
         .catch((res)=>{
           console.log('CATCH');
@@ -70,8 +66,6 @@ export default function TodayPage() {
           alert(res.response.data.message);
         });
     }
-
-    
   }
 
   const dayPercentage = getHabitPercentage(todayHabits);
@@ -127,4 +121,10 @@ function getHabitPercentage(todayHabits) {
   const numberHabits = todayHabits.length;
   const numberHabitsDone = todayHabits.filter((habit)=>habit.done).length;
   return (numberHabits) ? 100*(numberHabitsDone/numberHabits).toFixed(2) : 0;
+}
+
+function toggleHabitStatus(todayHabits, setTodayHabits, habitId) {
+  setTodayHabits(todayHabits.map((habit)=>{
+    return ((habit.id === habitId) ? {...habit, done:!habit.done} : {...habit})
+  }));
 }

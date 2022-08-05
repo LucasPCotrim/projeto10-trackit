@@ -63,7 +63,6 @@ export default function HabitsPage() {
   }
 
   const handleDeleteHabit = (habitId)=>{
-    console.log('--------handleDeleteHabit--------')
     let userConfirmation = window.confirm('Deletar este hábito?');
     if (!userConfirmation){
       return;
