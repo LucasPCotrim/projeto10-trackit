@@ -52,7 +52,6 @@ export const HabitContainer = styled.div`
 `;
 
 export const HabitWrapper = styled.div`
-  overflow-x: scroll;
   background-color: #FFFFFF;
   width: 100%;
   height: 94px;

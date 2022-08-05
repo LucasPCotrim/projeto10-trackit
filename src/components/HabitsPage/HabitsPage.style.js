@@ -211,7 +211,6 @@ export const HabitCardWrapper = styled.div`
 
   h2 {
     width: 94%;
-    overflow-x: scroll;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
