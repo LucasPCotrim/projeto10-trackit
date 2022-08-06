@@ -1,11 +1,24 @@
-import {HistoryPageWrapper, PageContent} from './HistoryPage.style'
+import {HistoryPageWrapper, PageContent, CalendarWrapper} from './HistoryPage.style'
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'
+import {useState} from 'react';
 
 export default function HistoryPage() {
+  const [value, setValue] = useState(new Date());
+
   return (
     <HistoryPageWrapper>
       <PageContent>
         <h1>Histórico</h1>
-        <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
+        <CalendarWrapper>
+          <Calendar
+            className='react-calendar'
+            showWeekNumbers={false}
+            value={value}
+            locale='pt'
+            calendarType='US'
+          />
+        </CalendarWrapper>
       </PageContent>
     </HistoryPageWrapper>
   )

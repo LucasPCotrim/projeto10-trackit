@@ -40,3 +40,13 @@ export const PageContent = styled.div`
     color: #666666;
   }
 `;
+
+export const CalendarWrapper = styled.div`
+  margin-top: 11px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  div {
+    border: none;
+  }
+`;

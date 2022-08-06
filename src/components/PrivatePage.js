@@ -8,7 +8,6 @@ import UserContext from "../contexts/UserContext";
 const TOKEN_TIMEOUT = 1000*60*5;
 
 export default function PrivatePage({children}) {
-  console.log('LOADED PivatePage');
 
   const {user} = useContext(UserContext);
   const tokenObj = JSON.parse(localStorage.getItem('trackIt-token'));
