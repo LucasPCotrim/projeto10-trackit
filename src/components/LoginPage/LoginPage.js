@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {LoginPageWrapper, Form, SignUpLink} from './LoginPage.style';
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 import UserContext from "../../contexts/UserContext";
 import {Link, useNavigate} from 'react-router-dom';
 import trackItLogo from '../../assets/imgs/trackitLogo.svg';
@@ -19,6 +20,15 @@ export default function LoginPage() {
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    const loggedUser = JSON.parse(localStorage.getItem('trackIt-user'));
+    if (loggedUser){
+      setUser(loggedUser);
+      navigate('/hoje');
+    }
+  }, []);
+
 
   const handleForm = (event)=>{
     setForm({
@@ -44,6 +54,12 @@ export default function LoginPage() {
         localStorage.setItem("trackIt-token", JSON.stringify({
           token: res.data.token,
           loginTime: +new Date()
+        }));
+        localStorage.setItem("trackIt-user", JSON.stringify({...user,
+          name: res.data.name,
+          email: res.data.email,
+          password: res.data.password,
+          image: res.data.image
         }));
         setUser({...user,
           name: res.data.name,

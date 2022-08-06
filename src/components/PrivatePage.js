@@ -8,16 +8,20 @@ import UserContext from "../contexts/UserContext";
 const TOKEN_TIMEOUT = 1000*60*5;
 
 export default function PrivatePage({children}) {
+  console.log('LOADED PivatePage');
 
-  const {user, } = useContext(UserContext);
+  const {user} = useContext(UserContext);
   const tokenObj = JSON.parse(localStorage.getItem('trackIt-token'));
   const timestampNow = + new Date();
 
+
   if ((!tokenObj) || (!tokenObj.token)){
+    localStorage.removeItem("trackIt-user");
     alert('Você não está autorizado a acessar esta página!');
     return(<Navigate to='/' replace={true} />);
 
   } else if (timestampNow - tokenObj.loginTime >= TOKEN_TIMEOUT){
+    localStorage.removeItem("trackIt-user");
     alert('Sessão expirada. Faça login novamente');
     return(<Navigate to='/' replace={true} />);
     
