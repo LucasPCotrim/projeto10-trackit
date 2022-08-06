@@ -49,4 +49,23 @@ export const CalendarWrapper = styled.div`
   div {
     border: none;
   }
+  .react-calendar__tile--range {
+    background-color: #FFFF81;
+    color: black;
+  }
+
+  .react-calendar__tile.react-calendar__month-view__days__day.success-habits {
+    background-color: #8CC654;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-sizing: border-box;
+  }
+  .react-calendar__tile.react-calendar__month-view__days__day.failed-habits {
+    background-color: #EA5766;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-sizing: border-box;
+  }
+
+
 `;

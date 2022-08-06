@@ -49,5 +49,20 @@ function unMarkTodayHabit(habitId) {
   return axios.post(UnMarkHabitAPI, {}, {headers: {Authorization: `Bearer ${token}`}});
 }
 
+function getHabitHistory() {
+  const HabitHistoryAPI = `${BASE_URL}/habits/history/daily`;
+  const token = JSON.parse(localStorage.getItem('trackIt-token')).token;
+  return axios.get(HabitHistoryAPI, {headers: {Authorization: `Bearer ${token}`}});
+}
 
-export {signUp, logIn, loadHabits, createHabit, deleteHabit, getTodayHabits, markTodayHabit, unMarkTodayHabit};
+
+export {
+  signUp,
+  logIn,
+  loadHabits,
+  createHabit,
+  deleteHabit,
+  getTodayHabits,
+  markTodayHabit,
+  unMarkTodayHabit,
+  getHabitHistory};
