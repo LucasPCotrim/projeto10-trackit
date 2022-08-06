@@ -1,5 +1,10 @@
 // @ts-nocheck
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+
+const fadeInAnimation = keyframes`
+ 0% {transform: translateY(15px); opacity: 0}
+ 100% {transform: translateY(0px); opacity: 1}
+`;
 
 export const TodayPageWrapper = styled.div`
   background-color: #F2F2F2;
@@ -29,6 +34,8 @@ export const PageContent = styled.div`
     font-size: 22.976px;
     line-height: 29px;
     color: #126BA5;
+    opacity: 0;
+    animation: ${fadeInAnimation} 0.7s forwards;
   }
   h2 {
     margin-bottom: 28px;
@@ -39,6 +46,8 @@ export const PageContent = styled.div`
     font-size: 17.976px;
     line-height: 22px;
     color: ${props => (props.percentCompleted > 0) ? '#8FC549' : '#BABABA'};
+    opacity: 0;
+    animation: ${fadeInAnimation} 0.7s forwards;
   }
 `;
 
@@ -51,6 +60,7 @@ export const HabitContainer = styled.div`
   gap: 10px;
 `;
 
+
 export const HabitWrapper = styled.div`
   background-color: #FFFFFF;
   width: 100%;
@@ -60,7 +70,11 @@ export const HabitWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  opacity: 0;
+  animation: ${fadeInAnimation} 0.7s forwards;
 `;
+
+
 
 export const HabitInfo = styled.div`
   h3 {

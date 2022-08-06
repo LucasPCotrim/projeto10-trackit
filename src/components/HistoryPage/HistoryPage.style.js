@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+
+const fadeInAnimation = keyframes`
+ 0% {transform: translateY(15px); opacity: 0}
+ 100% {transform: translateY(0px); opacity: 1}
+`;
 
 export const HistoryPageWrapper = styled.div`
   background-color: #F2F2F2;
@@ -29,6 +34,8 @@ export const PageContent = styled.div`
     font-size: 22.976px;
     line-height: 29px;
     color: #126BA5;
+    opacity: 0;
+    animation: ${fadeInAnimation} 0.7s forwards;
   }
   p {
     width: 100%;
@@ -45,6 +52,8 @@ export const CalendarWrapper = styled.div`
   margin-top: 11px;
   border-radius: 10px;
   overflow: hidden;
+  opacity: 0;
+  animation: ${fadeInAnimation} 0.7s 0.4s forwards;
 
   div {
     border: none;
@@ -55,16 +64,37 @@ export const CalendarWrapper = styled.div`
   }
 
   .react-calendar__tile.react-calendar__month-view__days__day.success-habits {
-    background-color: #8CC654;
-    border-radius: 50%;
-    border: 4px solid white;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    abbr {
+      background-color: #8CC654;
+      border-radius: 50%;
+      box-sizing: border-box;
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
   }
   .react-calendar__tile.react-calendar__month-view__days__day.failed-habits {
-    background-color: #EA5766;
-    border-radius: 50%;
-    border: 4px solid white;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    abbr {
+      background-color: #EA5766;
+      border-radius: 50%;
+      box-sizing: border-box;
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
 

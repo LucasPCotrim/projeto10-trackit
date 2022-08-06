@@ -53,9 +53,7 @@ export default function HistoryPage() {
             value={value}
             locale='pt'
             calendarType='US'
-            tileClassName={({date}) => {
-              return  getClassName(history, dayjs(new Date(date)).format('DD/MM/YYYY'));
-            }}
+            tileClassName={({date}) => getClassName(history, dayjs(new Date(date)).format('DD/MM/YYYY'))}
           />
         </CalendarWrapper>
       </PageContent>

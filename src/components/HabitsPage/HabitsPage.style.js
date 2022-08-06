@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+
+const fadeInAnimation = keyframes`
+ 0% {transform: translateY(15px); opacity: 0}
+ 100% {transform: translateY(0px); opacity: 1}
+`;
 
 export const HabitsPageWrapper = styled.div`
   background-color: #F2F2F2;
@@ -28,6 +33,8 @@ export const PageContent = styled.div`
     font-size: 17.976px;
     line-height: 22px;
     color: #666666;
+    opacity: 0;
+    animation: ${fadeInAnimation} 0.7s 0.5s forwards;
   }
 `;
 
@@ -39,6 +46,8 @@ export const TopMenu = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+  opacity: 0;
+  animation: ${fadeInAnimation} 0.7s forwards;
 
   h1 {
     font-family: 'Lexend Deca';
@@ -86,6 +95,8 @@ export const HabitCreationCardWrapper = styled.div`
   background-color: #FFFFFF;
   border-radius: 5px;
   padding: 18px;
+  opacity: 0;
+  animation: ${fadeInAnimation} 0.7s forwards;
 
   input[type=text] {
     width: 100%;
@@ -208,6 +219,8 @@ export const HabitCardWrapper = styled.div`
   border-radius: 5px;
   padding: 13px;
   overflow-x: hidden;
+  opacity: 0;
+  animation: ${fadeInAnimation} 0.7s forwards;
 
   h2 {
     width: 94%;
